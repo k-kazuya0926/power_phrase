@@ -21,7 +21,7 @@ add('writable_dirs', []);
 
 
 // Hosts
-// inventory('hosts.yml');
+// inventory('hosts.yml'); // これだとなぜかPermission deniedとなる
 host('54.178.66.183')
     ->port(22)
     ->user('ec2-user')
