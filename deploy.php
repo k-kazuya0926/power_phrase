@@ -21,9 +21,6 @@ add('writable_dirs', []);
 
 
 // Hosts
-
-// host('project.com')
-//     ->set('deploy_path', '~/{{application}}');    
 // inventory('hosts.yml');
 host('54.178.66.183')
     ->port(22)
