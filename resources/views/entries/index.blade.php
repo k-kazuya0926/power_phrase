@@ -10,7 +10,9 @@
 <ul>
     @forelse ($entries as $entry)
     <li>
-        <a href="{{ action('EntriesController@show', $entry) }}">{{ $entry->power_phrase }}</a>
+        <a href="{{ action('EntriesController@show', $entry) }}">ID：{{ $entry->id }} パワーフレーズ：{{ $entry->power_phrase }} ユーザーID：{{ $entry->user_id }}</a>
+
+        {{-- TODO 登録者=ログインユーザーである場合のみ表示 --}}
         <a href="{{ action('EntriesController@edit', $entry) }}" class="edit">[Edit]</a>
         <a href="#" class="del" data-id="{{ $entry->id }}">[x]</a>
         <form method="post" action="{{ url('/entries', $entry->id) }}" id="form_{{ $entry->id }}">
