@@ -11,8 +11,8 @@
 <p>{!! nl2br(e($entry->episode)) !!}</p>
 <figure>
     {{-- <img src="/storage/profile_images/pjV4h8aJvgPUa3RSgICzR51SDdRhb53XupYT0RjK.png" width="100px" height="100px"> --}}
-    <img src="{{asset('/storage/profile_images/pjV4h8aJvgPUa3RSgICzR51SDdRhb53XupYT0RjK.png')}}" width="100px" height="100px">
-    <figcaption>画像</figcaption>
+    {{-- <img src="{{asset('/storage/profile_images/pjV4h8aJvgPUa3RSgICzR51SDdRhb53XupYT0RjK.png')}}" width="100px" height="100px">
+    <figcaption>画像</figcaption> --}}
 </figure>
 
 {{-- <h2>Comments</h2>

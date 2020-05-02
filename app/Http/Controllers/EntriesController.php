@@ -30,7 +30,7 @@ class EntriesController extends Controller
         }
         $entry->save();
 
-        $request->photo->store('public/profile_images'); // /storage/appからの相対パス
+        // $request->photo->store('public/profile_images'); // /storage/appからの相対パス
 
         return redirect('/');
     }
