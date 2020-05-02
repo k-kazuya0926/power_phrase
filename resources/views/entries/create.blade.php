@@ -7,8 +7,8 @@
     <a href="{{ url('/') }}" class="header-menu">Back</a>
     New Entry
 </h1>
-{{-- <form method="post" action="{{ url('/entries') }}"> --}}
-<form method="post" action="{{ url('/entries') }}" enctype="multipart/form-data">
+<form method="post" action="{{ url('/entries') }}">
+{{-- <form method="post" action="{{ url('/entries') }}" enctype="multipart/form-data"> --}}
     {{ csrf_field() }}
     <p>
         <input type="text" name="power_phrase" placeholder="enter power_phrase" value="{{ old('power_phrase') }}">
@@ -28,9 +28,9 @@
         <span class="error">{{ $errors->first('episode') }}</span>
         @endif
     </p>
-    <p>
+    {{-- <p>
         <input type="file" name="photo">
-    </p>
+    </p> --}}
     <p>
         <input type="submit" value="Add">
     </p>
