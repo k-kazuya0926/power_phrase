@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/', 'EntriesController@index');
 Route::get('/entries/{entry}', 'EntriesController@show')->where('entry', '[0-9]+');
 Route::get('/entries/create', 'EntriesController@create');
