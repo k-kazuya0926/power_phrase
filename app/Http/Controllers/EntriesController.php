@@ -19,9 +19,10 @@ class EntriesController extends Controller
     }
 
     public function create() {
-        if (!Auth::check()) {
-            return view('auth/login');
-        }
+        // TODO
+        // if (!Auth::check()) {
+        //     return view('auth/login');
+        // }
         return view('entries.create');
     }
 
