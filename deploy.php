@@ -30,7 +30,8 @@ host('54.178.66.183')
     ->user('ec2-user')
     ->identityFile('~/.ssh/kazuya.pem')
     ->stage('production')
-    ->set('branch', 'master')
+    // ->set('branch', 'master')
+    ->set('branch', 'introduce_deployer')
     ->set('deploy_path', '/var/www/html/power_phrase');
 
 
