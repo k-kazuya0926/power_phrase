@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Entry;
 use App\Http\Requests\EntryRequest;
 
@@ -18,6 +19,9 @@ class EntriesController extends Controller
     }
 
     public function create() {
+        if (!Auth::check()) {
+            return view('auth/login');
+        }
         return view('entries.create');
     }
 
@@ -36,6 +40,9 @@ class EntriesController extends Controller
     }
 
     public function edit(Entry $entry) {
+        if (!Auth::check()) {
+            return view('auth/login');
+        }
         return view('entries.edit')->with('entry', $entry);
     }
 
