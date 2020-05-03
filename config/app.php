@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'PowerPhrase'),
+    'name' => env('APP_NAME', 'Power Phrase'),
 
     /*
     |--------------------------------------------------------------------------

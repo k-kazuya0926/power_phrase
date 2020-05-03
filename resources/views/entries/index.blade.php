@@ -4,7 +4,9 @@
 
 @section('content')
 <div class="uk-container">
-    <h2 class="uk-text-center uk-heading-divider">心に残っている言葉と<br>エピソードを共有しよう！</h2>
+    <div class="uk-height-large uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-light" data-src="images/3192174_s.jpg" uk-img>
+        <h1 class="text-muted">Power Phrase</h1>
+    </div>
     <h3 class="uk-text-center">投稿一覧</h3>
     <div class="uk-child-width-1-1@s uk-child-width-1-3@s uk-grid-match" uk-grid>
         @forelse ($entries as $entry)
