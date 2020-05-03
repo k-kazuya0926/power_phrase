@@ -17,7 +17,7 @@
                                 <img class="uk-border-circle" width="40" height="40" src="images/avatar.jpg">
                             </div> --}}
                             <div class="uk-width-expand">
-                                <h3 class="uk-card-title uk-margin-remove-bottom"><a href="{{ action('EntriesController@show', $entry) }}">{{ $entry->power_phrase }}(出所)</a></h3>
+                                <h3 class="uk-card-title uk-margin-remove-bottom"><a href="{{ action('EntriesController@show', $entry) }}">{{ $entry->power_phrase }}({{ $entry->source }})</a></h3>
                                 {{-- <p class="uk-text-meta uk-margin-remove-top">出所</p> --}}
                                 <span class="uk-text-meta uk-margin-remove-top">Kazuya <time datetime="2016-04-01T19:00">2020/05/03</time></span>
                                 <a href="{{ action('EntriesController@edit', $entry) }}" class="edit">[Edit]</a>
