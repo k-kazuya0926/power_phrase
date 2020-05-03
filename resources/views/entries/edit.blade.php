@@ -10,7 +10,7 @@
         <div class="uk-child-width-1-1" uk-grid>
             <div>
                 <h4>パワーフレーズ</h4>
-                <input class="uk-width-1-1" type="text" name="power_phrase" placeholder="enter power_phrase" value="{{ old('power_phrase', $entry->power_phrase) }}">
+                <input class="uk-width-1-1" type="text" name="power_phrase" placeholder="enter power_phrase" value="{{ old('power_phrase', $entry->power_phrase) }}" required>
                 @if ($errors->has('power_phrase'))
                 <span class="error">{{ $errors->first('power_phrase') }}</span>
                 @endif

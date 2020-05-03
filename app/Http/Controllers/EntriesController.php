@@ -20,20 +20,15 @@ class EntriesController extends Controller
     }
 
     public function create() {
-        // TODO
-        // if (!Auth::check()) {
-        //     return view('auth/login');
-        // }
         return view('entries.create');
     }
 
     public function store(EntryRequest $request) {
         $entry = new Entry();
         $entry->power_phrase = $request->power_phrase;
-        $entry->source = $request->source;
-        if (!empty($request->episode)) {
-            $entry->episode = $request->episode;
-        }
+        $entry->source = empty($request->source) ? '' : $request->source;
+        $entry->episode = empty($request->episode) ? '' : $request->episode;
+        $entry->user_id = Auth::id();
         $entry->save();
 
         // $request->photo->store('public/profile_images'); // /storage/appからの相対パス
@@ -42,18 +37,13 @@ class EntriesController extends Controller
     }
 
     public function edit(Entry $entry) {
-        if (!Auth::check()) {
-            return view('auth/login');
-        }
         return view('entries.edit')->with('entry', $entry);
     }
 
     public function update(EntryRequest $request, Entry $entry) {
         $entry->power_phrase = $request->power_phrase;
-        $entry->source = $request->source;
-        if (!empty($request->episode)) {
-            $entry->episode = $request->episode;
-        }
+        $entry->source = empty($request->source) ? '' : $request->source;
+        $entry->episode = empty($request->episode) ? '' : $request->episode;
         $entry->save();
         return redirect('/');
     }

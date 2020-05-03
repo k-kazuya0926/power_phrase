@@ -29,7 +29,7 @@
                             <label for="source" class="col-md-4 col-form-label text-md-right">{{ __('Source') }}</label>
 
                             <div class="col-md-6">
-                                <input id="source" type="text" class="form-control @error('source') is-invalid @enderror" name="source" value="{{ old('source') }}" required autocomplete="source">
+                                <input id="source" type="text" class="form-control @error('source') is-invalid @enderror" name="source" value="{{ old('source') }}" autocomplete="source">
 
                                 @error('source')
                                     <span class="invalid-feedback" role="alert">
@@ -43,7 +43,7 @@
                             <label for="episode" class="col-md-4 col-form-label text-md-right">{{ __('Episode') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="episode" class="form-control @error('episode') is-invalid @enderror" name="episode" required autocomplete="episode">
+                                <textarea id="episode" class="form-control @error('episode') is-invalid @enderror" name="episode" autocomplete="episode">
                                     {{ old('episode') }}
                                 </textarea>
 

@@ -24,8 +24,7 @@ class EntryRequest extends FormRequest
     public function rules()
     {
         return [
-            'power_phrase' => 'required',
-            'source' => 'required',
+            'power_phrase' => 'required'
         ];
     }
 
