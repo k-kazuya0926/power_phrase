@@ -10,7 +10,8 @@ use App\Http\Requests\EntryRequest;
 class EntriesController extends Controller
 {
     public function index() {
-        $entries = Entry::orderBy('created_at', 'desc')->paginate(10);
+        $pagenation_count = 9;
+        $entries = Entry::orderBy('created_at', 'desc')->paginate($pagenation_count);
         return view('entries.index')->with('entries', $entries);
     }
 
