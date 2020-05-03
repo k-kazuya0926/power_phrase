@@ -18,3 +18,7 @@ Route::post('/entries', 'EntriesController@store');
 Route::get('/entries/{entry}/edit', 'EntriesController@edit');
 Route::patch('/entries/{entry}', 'EntriesController@update');
 Route::delete('/entries/{entry}', 'EntriesController@destroy');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

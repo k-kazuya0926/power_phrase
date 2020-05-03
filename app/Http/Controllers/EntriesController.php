@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Entry;
 use App\Http\Requests\EntryRequest;
 
 class EntriesController extends Controller
 {
     public function index() {
-        $entries = Entry::orderBy('created_at', 'desc')->paginate(10);
+        $pagenation_count = 9;
+        $entries = Entry::orderBy('created_at', 'desc')->paginate($pagenation_count);
         return view('entries.index')->with('entries', $entries);
     }
 
@@ -24,10 +26,9 @@ class EntriesController extends Controller
     public function store(EntryRequest $request) {
         $entry = new Entry();
         $entry->power_phrase = $request->power_phrase;
-        $entry->source = $request->source;
-        if (!empty($request->episode)) {
-            $entry->episode = $request->episode;
-        }
+        $entry->source = empty($request->source) ? '' : $request->source;
+        $entry->episode = empty($request->episode) ? '' : $request->episode;
+        $entry->user_id = Auth::id();
         $entry->save();
 
         // $request->photo->store('public/profile_images'); // /storage/appからの相対パス
@@ -41,10 +42,8 @@ class EntriesController extends Controller
 
     public function update(EntryRequest $request, Entry $entry) {
         $entry->power_phrase = $request->power_phrase;
-        $entry->source = $request->source;
-        if (!empty($request->episode)) {
-            $entry->episode = $request->episode;
-        }
+        $entry->source = empty($request->source) ? '' : $request->source;
+        $entry->episode = empty($request->episode) ? '' : $request->episode;
         $entry->save();
         return redirect('/');
     }
