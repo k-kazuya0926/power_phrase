@@ -36,7 +36,7 @@
                         {{ $entry->episode }}
                     </div>
                     <div class="uk-card-footer">
-                        【未実装】コメント1件　いいね！1件
+                        コメント{{ $entry->comments->count() }}件
                     </div>
                 </div>
             </div>
