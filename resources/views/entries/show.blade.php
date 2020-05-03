@@ -57,7 +57,7 @@
             <input type="submit" value="Add Comment">
         </p>
     </form> --}}
-    <a href="{{ url('/') }}" class="btn btn-link uk-margin-top">戻る</a>
+    <a href="{{ url('/') }}" class="btn btn-link uk-margin-top">{{ __('Back') }}</a>
 </div>
 <script src="/js/main.js"></script>
 @endsection

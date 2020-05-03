@@ -1,0 +1,19 @@
+{
+    "Login":"ログイン",
+    "Logout":"ログアウト",
+    "Password":"パスワード",
+    "Confirm Password":"パスワード（確認）",
+    "Name":"ユーザー名",
+    "Register":"ユーザー登録",
+    "E-Mail Address":"メールアドレス",
+    "Forgot Your Password?":"パスワードを忘れましたか？",
+    "Reset Password":"パスワード再発行",
+    "Send Password Reset Link":"パスワード再発行URLを送信",
+    "Entry":"投稿",
+    "Power Phrase":"パワーフレーズ",
+    "Source":"出所",
+    "Episode":"エピソード",
+    "Back":"戻る",
+    "Edit":"更新",
+    "Delete":"削除"
+}

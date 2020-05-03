@@ -12,7 +12,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="power_phrase" class="col-md-4 col-form-label text-md-right">{{ __('Register') }}</label>
+                            <label for="power_phrase" class="col-md-4 col-form-label text-md-right">{{ __('Power Phrase') }}</label>
 
                             <div class="col-md-6">
                                 <input id="power_phrase" type="text" class="form-control @error('power_phrase') is-invalid @enderror" name="power_phrase" value="{{ old('power_phrase') }}" required autocomplete="power_phrase" autofocus>
@@ -63,7 +63,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    {{ __('Entry') }}
                                 </button>
                                 <a class="btn btn-link" href="{{ url('/') }}">
                                     {{ __('Back') }}
