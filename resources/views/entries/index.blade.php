@@ -3,6 +3,7 @@
 @section('title', 'Entries')
 
 @section('content')
+<script src="/js/main.js"></script>
 <div class="uk-container">
     <h2 class="uk-text-center uk-heading-divider">心に残っている言葉とエピソードを共有しよう！</h2>
     <h3 class="uk-text-center">投稿一覧</h3>
@@ -19,12 +20,12 @@
                                 <h3 class="uk-card-title uk-margin-remove-bottom"><a href="{{ action('EntriesController@show', $entry) }}">{{ $entry->power_phrase }}(出所)</a></h3>
                                 {{-- <p class="uk-text-meta uk-margin-remove-top">出所</p> --}}
                                 <span class="uk-text-meta uk-margin-remove-top">Kazuya <time datetime="2016-04-01T19:00">2020/05/03</time></span>
-                                {{-- <a href="{{ action('EntriesController@edit', $entry) }}" class="edit">[Edit]</a>
+                                <a href="{{ action('EntriesController@edit', $entry) }}" class="edit">[Edit]</a>
                                 <a href="#" class="del" data-id="{{ $entry->id }}">[x]</a>
                                 <form method="post" action="{{ url('/entries', $entry->id) }}" id="form_{{ $entry->id }}">
                                     {{ csrf_field() }}
                                     {{ method_field('delete') }}
-                                </form> --}}
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -40,23 +41,6 @@
         <li>No entries yet</li>
         @endforelse
     </div>
-    <ul>
-        @forelse ($entries as $entry)
-        <li>
-            <a href="{{ action('EntriesController@show', $entry) }}">ID：{{ $entry->id }} パワーフレーズ：{{ $entry->power_phrase }} ユーザーID：{{ $entry->user_id }}</a>
-            @auth
-                <a href="{{ action('EntriesController@edit', $entry) }}" class="edit">[Edit]</a>
-                <a href="#" class="del" data-id="{{ $entry->id }}">[x]</a>
-                <form method="post" action="{{ url('/entries', $entry->id) }}" id="form_{{ $entry->id }}">
-                    {{ csrf_field() }}
-                    {{ method_field('delete') }}
-                </form>
-            @endauth
-        </li>
-        @empty
-        <li>No entries yet</li>
-        @endforelse
-    </ul>
     <div class="d-flex justify-content-center uk-margin-top">
         {{ $entries->links() }}
     </div>
