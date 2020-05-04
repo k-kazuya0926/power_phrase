@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Entry;
 use App\Http\Requests\EntryRequest;
 
@@ -41,10 +42,12 @@ class EntriesController extends Controller
     }
 
     public function update(EntryRequest $request, Entry $entry) {
-        $entry->power_phrase = $request->power_phrase;
-        $entry->source = empty($request->source) ? '' : $request->source;
-        $entry->episode = empty($request->episode) ? '' : $request->episode;
-        $entry->save();
+        DB::transaction(function() use ($request, $entry) {
+            $entry->power_phrase = $request->power_phrase;
+            $entry->source = empty($request->source) ? '' : $request->source;
+            $entry->episode = empty($request->episode) ? '' : $request->episode;
+            $entry->save();
+        });
         return redirect('/');
     }
 
