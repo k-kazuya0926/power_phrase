@@ -43,6 +43,12 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
+                            <form method="POST" name="trial_login_form" action="{{ route('login') }}">
+                                @csrf
+                                <input id="email" type="hidden" class="form-control @error('email') is-invalid @enderror" name="email" value="guest@power-phrase.com" required autocomplete="email" autofocus>
+                                <input id="password" type="hidden" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" value="guestuser">
+                                <a class="nav-link" href="javascript:trial_login_form.submit()">{{ __('Trial Login') }}</a>
+                            </form>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
