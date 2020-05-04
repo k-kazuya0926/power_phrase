@@ -4,39 +4,40 @@
 
 @section('content')
 <div class="uk-container">
-    <div class="uk-height-large uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-light" data-src="images/3192174_s.jpg" uk-img>
-        <h1 class="text-muted">Power Phrase</h1>
-    </div>
+    <h1 class="uk-text-center">Power Phrase</h1>
+    <p class="uk-text-center">あなたを支える言葉を共有しよう！</p>
+    <img class="uk-align-center" data-src="images/3192174_s.jpg" alt="" uk-img>
     <h3 class="uk-text-center">投稿一覧</h3>
-    <div class="uk-child-width-1-1@s uk-child-width-1-3@s uk-grid-match" uk-grid>
+    <div class="uk-child-width-1-3@m uk-child-width-1-1@s uk-grid-match" uk-grid>
         @forelse ($entries as $entry)
             <div>
-                <div class="uk-card uk-card-default uk-card-default">
+                <div class="uk-card uk-card-default">
                     <div class="uk-card-header">
                         <div class="uk-grid-small uk-flex-middle" uk-grid>
                             <div class="uk-width-expand">
                                 <h3 class="uk-card-title uk-margin-remove-bottom">
                                     <a href="{{ action('EntriesController@show', $entry) }}">
                                         {{ $entry->power_phrase }}
-                                        @if (!empty($entry->source))({{ $entry->source }})@endif</a>
+                                        @if (!empty($entry->source))({{ $entry->source }})@endif
+                                    </a>
                                 </h3>
                                 <span class="uk-text-meta uk-margin-remove-top">{{ $entry->user->name }} <time datetime="2016-04-01T19:00">2020/05/03</time></span>
                                 @if ($entry->user_id == Auth::id())
                                 <a href="{{ action('EntriesController@edit', $entry) }}" class="edit">[{{ __('Edit') }}]</a>
-                                <a href="#" class="del" data-id="{{ $entry->id }}">[{{ __('Delete') }}]</a>
+                                {{-- <a href="#" class="del" data-id="{{ $entry->id }}">[{{ __('Delete') }}]</a>
                                 <form method="post" action="{{ url('/entries', $entry->id) }}" id="form_{{ $entry->id }}">
                                     {{ csrf_field() }}
                                     {{ method_field('delete') }}
-                                </form>
+                                </form> --}}
                                 @endif
                             </div>
                         </div>
                     </div>
                     <div class="uk-card-body">
-                        {{ $entry->episode }}
+                        <p>{{ $entry->episode }}</p>
                     </div>
                     <div class="uk-card-footer">
-                        コメント{{ $entry->comments->count() }}件
+                        {{ __('Comment') }}{{ $entry->comments->count() }}件
                     </div>
                 </div>
             </div>
