@@ -19,9 +19,9 @@ https://www.power-phrase.com/
 - AWS
     - EC2
     - RDS for MySQL 5.7.22
-    - Route53
-    - ALB
-    - ACM
+    - Route53(DNS)
+    - ALB(ロードバランサー)
+    - ACM(SSL化)
 - Deployer 6.7.1
 - Vagrant 2.2.6
 - CentOS 7.7.1908
