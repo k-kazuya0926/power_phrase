@@ -26,7 +26,7 @@
                                 <a href="{{ action('EntriesController@edit', $entry) }}" class="edit">[{{ __('Edit') }}]</a>
                                 {{-- <a href="#" class="del" data-id="{{ $entry->id }}">[{{ __('Delete') }}]</a>
                                 <form method="post" action="{{ url('/entries', $entry->id) }}" id="form_{{ $entry->id }}">
-                                    {{ csrf_field() }}
+                                    @csrf
                                     {{ method_field('delete') }}
                                 </form> --}}
                                 @endif

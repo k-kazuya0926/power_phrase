@@ -5,7 +5,7 @@
 @section('content')
 <div class="uk-container uk-container-xsmall">
     <form method="post" action="{{ url('/entries', $entry->id) }}">
-        {{ csrf_field() }}
+        @csrf
         {{ method_field('patch') }}
         <div class="uk-child-width-1-1" uk-grid>
             <div>

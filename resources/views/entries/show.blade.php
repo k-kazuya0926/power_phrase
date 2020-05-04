@@ -25,14 +25,14 @@
             {{ $comment->created_at }} {{ $comment->comment }}
             {{-- <a href="#" class="del" data-id="{{ $comment->id }}">[x]</a>
             <form method="entry" action="{{ action('CommentsController@destroy', [$entry, $comment]) }}" id="form_{{ $comment->id }}">
-                {{ csrf_field() }}
+                @csrf
                 {{ method_field('delete') }}
             </form> --}}
         </li>
         @endforeach
     </ul>
     <form method="post" action="{{ action('CommentsController@store', $entry) }}">
-        {{ csrf_field() }}
+        @csrf
         <p>
             <textarea class="uk-width-1-1" name="comment" rows="5" placeholder="" required>{{ old('comment') }}</textarea>
             @if ($errors->has('comment'))
