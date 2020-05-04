@@ -3,8 +3,6 @@
 @section('content')
 <div class="uk-container uk-container-xsmall">
     <form method="POST" action="{{ url('/entries') }}">
-        {{-- {{ csrf_field() }}
-        {{ method_field('patch') }} --}}
         @csrf
         <div class="uk-child-width-1-1" uk-grid>
             <div>
