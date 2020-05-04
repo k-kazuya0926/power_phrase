@@ -1,79 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Entry') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ url('/entries') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="power_phrase" class="col-md-4 col-form-label text-md-right">{{ __('Power Phrase') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="power_phrase" type="text" class="form-control @error('power_phrase') is-invalid @enderror" name="power_phrase" value="{{ old('power_phrase') }}" required autocomplete="power_phrase" autofocus>
-
-                                @error('power_phrase')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="source" class="col-md-4 col-form-label text-md-right">{{ __('Source') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="source" type="text" class="form-control @error('source') is-invalid @enderror" name="source" value="{{ old('source') }}" autocomplete="source">
-
-                                @error('source')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="episode" class="col-md-4 col-form-label text-md-right">{{ __('Episode') }}</label>
-
-                            <div class="col-md-6">
-                                <textarea id="episode" class="form-control @error('episode') is-invalid @enderror" name="episode" autocomplete="episode">
-                                    {{ old('episode') }}
-                                </textarea>
-
-                                @error('episode')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        {{-- TODO 画像アップロード --}}
-                        {{-- <p>
-                            <input type="file" name="photo">
-                        </p> --}}
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Entry') }}
-                                </button>
-                                <a class="btn btn-link" href="{{ url('/') }}">
-                                    {{ __('Back') }}
-                                </a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+<div class="uk-container uk-container-xsmall">
+    <form method="POST" action="{{ url('/entries') }}">
+        {{-- {{ csrf_field() }}
+        {{ method_field('patch') }} --}}
+        @csrf
+        <div class="uk-child-width-1-1" uk-grid>
+            <div>
+                <h4>{{ __('Power Phrase') }}</h4>
+                <input class="uk-width-1-1" type="text" name="power_phrase" placeholder="" value="{{ old('power_phrase') }}" required>
+                @if ($errors->has('power_phrase'))
+                <span class="error">{{ $errors->first('power_phrase') }}</span>
+                @endif
+            </div>
+            <div>
+                <h4>{{ __('Source') }}</h4>
+                <input class="uk-width-1-1" type="text" name="source" placeholder="" value="{{ old('source') }}">
+                @if ($errors->has('source'))
+                <span class="error">{{ $errors->first('source') }}</span>
+                @endif
+            </div>
+            <div>
+                <h4>{{ __('Episode') }}</h4>
+                <textarea class="uk-width-1-1" name="episode" rows="5" placeholder="">{{ old('episode') }}</textarea>
+                @if ($errors->has('episode'))
+                <span class="error">{{ $errors->first('episode') }}</span>
+                @endif
             </div>
         </div>
-    </div>
+        <p>
+            <input type="submit" value="{{ __('Entry') }}">
+            <a href="{{ url('/') }}" class="btn btn-link">{{ __('Back') }}</a>
+        </p>
+    </form>
 </div>
 @endsection

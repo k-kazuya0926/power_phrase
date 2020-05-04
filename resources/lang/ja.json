@@ -8,12 +8,13 @@
     "E-Mail Address":"メールアドレス",
     "Forgot Your Password?":"パスワードを忘れましたか？",
     "Reset Password":"パスワード再発行",
-    "Send Password Reset Link":"パスワード再発行URLを送信",
+    "Send Password Reset Link":"パスワード再発行URLを送信　※未実装",
     "Entry":"投稿",
     "Power Phrase":"パワーフレーズ",
-    "Source":"出所",
+    "Source":"どこで知りましたか？　例：本のタイトル、WebサイトのURL、友人からなど",
     "Episode":"エピソード",
     "Back":"戻る",
     "Edit":"更新",
-    "Delete":"削除"
+    "Delete":"削除",
+    "Comment":"コメント"
 }

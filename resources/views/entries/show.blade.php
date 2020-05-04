@@ -4,35 +4,23 @@
 
 @section('content')
 <div class="uk-container uk-container-xsmall">
-    {{-- <h1>
-        <a href="{{ url('/') }}" class="header-menu">Back</a>
-        {{ $entry->power_phrase }}
-    </h1>
-    <p>{!! nl2br(e($entry->source)) !!}</p>
-    <p>{!! nl2br(e($entry->episode)) !!}</p> --}}
-    {{-- <figure>
-        <img src="/storage/profile_images/pjV4h8aJvgPUa3RSgICzR51SDdRhb53XupYT0RjK.png" width="100px" height="100px">
-        <figcaption>画像</figcaption>
-    </figure> --}}
-
     <div class="uk-child-width-1-1" uk-grid>
         <div>
-            {{-- <h4>パワーフレーズ</h4> --}}
             <h2>{{ $entry->power_phrase }}</h2>
         </div>
         <div>
-            <h4>出所</h4>
+            <h4>{{ __('Source') }}</h4>
             <p>{!! nl2br(e($entry->source)) !!}</p>
         </div>
         <div>
-            <h4>エピソード</h4>
+            <h4>{{ __('Episode') }}</h4>
             <p>{!! nl2br(e($entry->episode)) !!}</p>
         </div>
     </div>
 
-    <h3>コメント</h3>
+    <h3>{{ __('Comment') }}</h3>
     <ul>
-        @forelse ($entry->comments as $comment)
+        @foreach ($entry->comments as $comment)
         <li>
             {{ $comment->created_at }} {{ $comment->comment }}
             {{-- <a href="#" class="del" data-id="{{ $comment->id }}">[x]</a>
@@ -41,20 +29,18 @@
                 {{ method_field('delete') }}
             </form> --}}
         </li>
-        @empty
-        <li>コメントはありません。</li>
-        @endforelse
+        @endforeach
     </ul>
     <form method="post" action="{{ action('CommentsController@store', $entry) }}">
         {{ csrf_field() }}
         <p>
-            <textarea class="uk-width-1-1" name="comment" rows="5" placeholder="">{{ old('comment') }}</textarea>
+            <textarea class="uk-width-1-1" name="comment" rows="5" placeholder="" required>{{ old('comment') }}</textarea>
             @if ($errors->has('comment'))
             <span class="error">{{ $errors->first('comment') }}</span>
             @endif
         </p>
         <p>
-            <input type="submit" value="コメント登録">
+            <input type="submit" value="{{ __('Comment') }}登録">
         </p>
     </form>
     <a href="{{ url('/') }}" class="btn btn-link uk-margin-top">{{ __('Back') }}</a>
