@@ -1,13 +1,14 @@
 ## Power Phrase
 
 心に残った言葉(パワーフレーズ)とそのエピソードを共有するサイトです。  
-ヘッダーにある「おためしログイン」をクリックするとゲストユーザーとしてログインできます。
 
 <img width="1965" alt="スクリーンショット 2020-05-04 10 23 41" src="https://user-images.githubusercontent.com/61341861/80930901-78b53e00-8df1-11ea-8872-fcded95ca332.png">
 
 ## URL
 
-http://54.178.66.183/
+https://www.power-phrase.com/
+
+ヘッダーにある「おためしログイン」をクリックするとゲストユーザーとしてログインできます。
 
 ## 使用技術
 
@@ -18,6 +19,9 @@ http://54.178.66.183/
 - AWS
     - EC2
     - RDS for MySQL 5.7.22
+    - Route53
+    - ALB
+    - ACM
 - Deployer 6.7.1
 - Vagrant 2.2.6
 - CentOS 7.7.1908
