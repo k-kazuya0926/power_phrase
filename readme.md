@@ -18,13 +18,12 @@ https://www.power-phrase.com/
 - UIKit 3.1.6
 - AWS
     - EC2
-    - RDS for MySQL 5.7.22
+    - RDS for MySQL 5.7
     - Route53(DNS)
     - ALB(ロードバランサー)
     - ACM(SSL化)
 - Deployer 6.7.1
-- Vagrant 2.2.6
-- CentOS 7.7.1908
+- Docker Desktop for Mac 2.2.0.3(Docker 19.03.5, Docker Compose 1.25.4)：Apache+PHP+MySQLの開発環境構築
 - Larastan 0.4.3
 
 ## 機能一覧
