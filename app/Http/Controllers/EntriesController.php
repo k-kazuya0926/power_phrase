@@ -10,20 +10,32 @@ use App\Http\Requests\EntryRequest;
 
 class EntriesController extends Controller
 {
+    /**
+     * 投稿一覧画面表示
+     */
     public function index() {
         $pagenation_count = 9;
         $entries = Entry::orderBy('created_at', 'desc')->paginate($pagenation_count);
         return view('entries.index')->with('entries', $entries);
     }
 
+    /**
+     * 投稿詳細画面表示
+     */
     public function show(Entry $entry) {
         return view('entries.show')->with('entry', $entry);
     }
 
+    /**
+     * 投稿画面表示
+     */
     public function create() {
         return view('entries.create');
     }
 
+    /**
+     * 投稿登録処理
+     */
     public function store(EntryRequest $request) {
         $entry = new Entry();
         $entry->power_phrase = $request->power_phrase;
@@ -37,10 +49,16 @@ class EntriesController extends Controller
         return redirect('/');
     }
 
+    /**
+     * 投稿更新画面表示
+     */
     public function edit(Entry $entry) {
         return view('entries.edit')->with('entry', $entry);
     }
 
+    /**
+     * 投稿更新処理
+     */
     public function update(EntryRequest $request, Entry $entry) {
         DB::transaction(function() use ($request, $entry) {
             $entry->power_phrase = $request->power_phrase;
@@ -51,6 +69,9 @@ class EntriesController extends Controller
         return redirect('/');
     }
 
+    /**
+     * 投稿削除処理
+     */
     public function destroy(Entry $entry) {
         $entry->delete();
         return redirect('/');

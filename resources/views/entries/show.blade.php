@@ -45,5 +45,4 @@
     </form>
     <a href="{{ url('/') }}" class="btn btn-link uk-margin-top">{{ __('Back') }}</a>
 </div>
-<script src="/js/main.js"></script>
 @endsection
