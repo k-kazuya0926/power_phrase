@@ -24,11 +24,18 @@
                                 <span class="uk-text-meta uk-margin-remove-top">{{ $entry->user->name }} <time datetime="2016-04-01T19:00">2020/05/03</time></span>
                                 @if ($entry->user_id == Auth::id())
                                 <a href="{{ action('EntriesController@edit', $entry) }}" class="edit">[{{ __('Edit') }}]</a>
-                                {{-- <a href="#" class="del" data-id="{{ $entry->id }}">[{{ __('Delete') }}]</a>
+                                <a href="#" class="del" data-id="{{ $entry->id }}" onclick="
+                                    event.preventDefault();
+                                    if (confirm('削除しますか？')) {
+                                        document.getElementById('form_{{ $entry->id }}').submit();
+                                    }    
+                                ">
+                                    [{{ __('Delete') }}]
+                                </a>
                                 <form method="post" action="{{ url('/entries', $entry->id) }}" id="form_{{ $entry->id }}">
                                     @csrf
                                     {{ method_field('delete') }}
-                                </form> --}}
+                                </form>
                                 @endif
                             </div>
                         </div>
@@ -49,5 +56,5 @@
         {{ $entries->links() }}
     </div>
 </div>
-<script src="/js/main.js"></script>
+{{-- <script src="/js/main.js"></script> --}}
 @endsection
