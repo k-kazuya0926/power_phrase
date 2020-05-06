@@ -14,17 +14,20 @@ https://www.power-phrase.com/
 
 - PHP 7.1.33
 - Laravel 5.8.38
+- Apache 2.4.41
 - Composer 1.10.1
 - UIKit 3.1.6
 - AWS
-    - EC2
-    - RDS for MySQL 5.7
-    - Route53(DNS)
-    - ALB(ロードバランサー)
-    - ACM(SSL化)
+    - EC2(Amazon Linux 2)
+    - RDS(MySQL 5.7)
+    - Route53
+    - ALB
+    - ACM
 - Deployer 6.7.1
-- Docker Desktop for Mac 2.2.0.3(Docker 19.03.5, Docker Compose 1.25.4)：Apache+PHP+MySQLの開発環境構築
-- Larastan 0.4.3
+- Docker Desktop for Mac 2.2.0.3(Apache+PHP+MySQLの開発環境構築)
+    - Docker 19.03.5
+    - Docker Compose 1.25.4
+- Larastan 0.4.3(静的解析)
 
 ## 機能一覧
 
