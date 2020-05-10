@@ -28,6 +28,7 @@ https://www.power-phrase.com/
     - Docker 19.03.5
     - Docker Compose 1.25.4
 - Larastan 0.4.3(静的解析)
+- PHPUnit 7.5.20
 
 ## 機能一覧
 
@@ -41,3 +42,4 @@ https://www.power-phrase.com/
 - ユーザー登録機能
 - ログイン機能
 - おためしログイン機能(ゲストユーザーとしてログイン)
+- 機能テスト

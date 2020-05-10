@@ -19,7 +19,6 @@ Route::get('/entries/{entry}/edit', 'EntriesController@edit');
 Route::patch('/entries/{entry}', 'EntriesController@update');
 Route::delete('/entries/{entry}', 'EntriesController@destroy');
 Route::post('/posts/{entry}/comments', 'CommentsController@store');
-Route::delete('/posts/{entry}/comments/{comment}', 'CommentsController@destroy');
 
 Auth::routes();
 
