@@ -9,6 +9,10 @@ use App\Comment;
 
 class CommentsController extends Controller
 {
+    /**
+     * コメント登録処理
+     * 
+     */
     public function store(Request $request, Entry $entry) {
         DB::transaction(function() use ($request, $entry) {
             $this->validate($request, [
@@ -18,10 +22,5 @@ class CommentsController extends Controller
             $entry->comments()->save($comment);
         });
         return redirect()->action('EntriesController@show', $entry);
-    }
-
-    public function destroy(Entry $entry, Comment $comment) {
-        $comment->delete();
-        return redirect()->back();
     }
 }
