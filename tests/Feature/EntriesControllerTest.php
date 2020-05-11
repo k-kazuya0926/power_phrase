@@ -67,7 +67,7 @@ class EntriesControllerTest extends TestCase
 
         $response
             ->assertStatus(200)
-            ->assertSee('どこで知りましたか？　例：本のタイトル、WebサイトのURL、友人からなど')
+            ->assertSee('どこで知りましたか？')
             ->assertSee('エピソード')
             ->assertSee('コメント')
             ->assertSee('コメント登録')
@@ -86,7 +86,7 @@ class EntriesControllerTest extends TestCase
         $response
             ->assertStatus(200)
             ->assertSee('パワーフレーズ')
-            ->assertSee('どこで知りましたか？　例：本のタイトル、WebサイトのURL、友人からなど')
+            ->assertSee('どこで知りましたか？')
             ->assertSee('エピソード')
             ->assertSee('投稿')
             ->assertSee('戻る');
@@ -125,7 +125,7 @@ class EntriesControllerTest extends TestCase
         $response
             ->assertStatus(200)
             ->assertSee('パワーフレーズ')
-            ->assertSee('どこで知りましたか？　例：本のタイトル、WebサイトのURL、友人からなど')
+            ->assertSee('どこで知りましたか？')
             ->assertSee('エピソード')
             ->assertSee('更新')
             ->assertSee('戻る');

@@ -14,9 +14,9 @@ https://www.power-phrase.com/
 
 - PHP 7.1.33
 - Laravel 5.8.38
+- Bootstrap 4.1.3
 - Apache 2.4.41
 - Composer 1.10.1
-- UIKit 3.1.6
 - AWS
     - EC2(Amazon Linux 2)
     - RDS(MySQL 5.7)
@@ -27,8 +27,8 @@ https://www.power-phrase.com/
 - Docker Desktop for Mac 2.2.0.3(Apache+PHP+MySQLの開発環境構築)
     - Docker 19.03.5
     - Docker Compose 1.25.4
-- Larastan 0.4.3(静的解析)
 - PHPUnit 7.5.20
+- Larastan 0.4.3(静的解析)
 
 ## 機能一覧
 
