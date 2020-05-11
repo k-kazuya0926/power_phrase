@@ -11,7 +11,7 @@
     <div class="card-deck">
         @forelse ($entries as $entry)
             <div class="col-12 col-sm-4 mb-5">
-                <div class="card">
+                <div class="card h-100">
                     <div class="card-header">
                         <h3 class="card-title">
                             <a href="{{ action('EntriesController@show', $entry) }}">
