@@ -10,36 +10,37 @@
     <h3 class="text-center mb-3">投稿一覧</h3>
     <div class="card-deck">
         @forelse ($entries as $entry)
-            <div class="col-12 col-sm-4 mb-5">
+            <div class="col-sm-4 mb-5">
                 <div class="card h-100">
-                    <div class="card-header">
-                        <h3 class="card-title">
+                    <div class="card-body">
+                        <h4 class="card-title">
                             <a href="{{ action('EntriesController@show', $entry) }}">
                                 {{ $entry->power_phrase }}
-                                @if (!empty($entry->source))({{ $entry->source }})@endif
                             </a>
-                        </h3>
-                        <span class="text-muted">{{ $entry->user->name }} {{ $entry->created_at }}</span>
-                        @if ($entry->user_id == Auth::id())
-                        <a href="{{ action('EntriesController@edit', $entry) }}" class="edit">[{{ __('Edit') }}]</a>
-                        <a href="#" class="del" data-id="{{ $entry->id }}" onclick="
-                            event.preventDefault();
-                            if (confirm('削除しますか？')) {
-                                document.getElementById('form_{{ $entry->id }}').submit();
-                            }    
-                        ">
-                            [{{ __('Delete') }}]
-                        </a>
-                        <form method="post" action="{{ url('/entries', $entry->id) }}" id="form_{{ $entry->id }}">
-                            @csrf
-                            {{ method_field('delete') }}
-                        </form>
-                        @endif
-                    </div>
-                    <div class="card-body">
+                        </h4>
+                        <h5>@if (!empty($entry->source)){{ $entry->source }}@endif</h5>
                         <p>{{ $entry->episode }}</p>
                     </div>
                     <div class="card-footer">
+                        <div>
+                            {{ $entry->user->name }}
+                            @if ($entry->user_id == Auth::id())
+                            <a href="{{ action('EntriesController@edit', $entry) }}" class="edit">[{{ __('Edit') }}]</a>
+                            <a href="#" class="del" data-id="{{ $entry->id }}" onclick="
+                                event.preventDefault();
+                                if (confirm('削除しますか？')) {
+                                    document.getElementById('form_{{ $entry->id }}').submit();
+                                }    
+                            ">
+                                [{{ __('Delete') }}]
+                            </a>
+                            <form method="post" action="{{ url('/entries', $entry->id) }}" id="form_{{ $entry->id }}">
+                                @csrf
+                                {{ method_field('delete') }}
+                            </form>
+                            @endif
+                        </div>
+                        <div>{{ $entry->created_at }}</div>
                         {{ __('Comment') }}{{ $entry->comments->count() }}件
                     </div>
                 </div>
