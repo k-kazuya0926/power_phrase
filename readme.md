@@ -32,7 +32,7 @@ https://www.power-phrase.com/
 
 ## インフラ構成図
 
-<img width="1965" alt="インフラ構成図" src="https://user-images.githubusercontent.com/61341861/81751795-180dbb80-94eb-11ea-8e9c-37bdb2c36da8.png">
+<img width="500" alt="インフラ構成図" src="https://user-images.githubusercontent.com/61341861/81751795-180dbb80-94eb-11ea-8e9c-37bdb2c36da8.png">
 
 ## 機能一覧
 
