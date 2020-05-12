@@ -18,7 +18,9 @@ Route::post('/entries', 'EntriesController@store');
 Route::get('/entries/{entry}/edit', 'EntriesController@edit');
 Route::patch('/entries/{entry}', 'EntriesController@update');
 Route::delete('/entries/{entry}', 'EntriesController@destroy');
-Route::post('/posts/{entry}/comments', 'CommentsController@store');
+Route::post('/entries/{entry}/comments', 'CommentsController@store');
+Route::post('/entries/{entry}/likes', 'LikesController@store');
+Route::post('/entries/{entry}/likes/{like}', 'LikesController@destroy');
 
 Auth::routes();
 
