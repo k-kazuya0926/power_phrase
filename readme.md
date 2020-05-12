@@ -2,7 +2,7 @@
 
 心に残った言葉(パワーフレーズ)とそのエピソードを共有するサイトです。  
 
-<img width="1965" alt="スクリーンショット 2020-05-04 10 23 41" src="https://user-images.githubusercontent.com/61341861/80930901-78b53e00-8df1-11ea-8872-fcded95ca332.png">
+<img width="1965" alt="トップページ" src="https://user-images.githubusercontent.com/61341861/80930901-78b53e00-8df1-11ea-8872-fcded95ca332.png">
 
 ## URL
 
@@ -29,6 +29,10 @@ https://www.power-phrase.com/
     - Docker Compose 1.25.4
 - PHPUnit 7.5.20
 - Larastan 0.4.3(静的解析)
+
+## インフラ構成図
+
+<img width="1965" alt="インフラ構成図" src="https://user-images.githubusercontent.com/61341861/81751795-180dbb80-94eb-11ea-8e9c-37bdb2c36da8.png">
 
 ## 機能一覧
 
