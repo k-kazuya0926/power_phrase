@@ -28,7 +28,7 @@
                             <a href="{{ action('EntriesController@edit', $entry) }}" class="edit">[{{ __('Edit') }}]</a>
                             <a href="#" class="del" data-id="{{ $entry->id }}" onclick="
                                 event.preventDefault();
-                                if (confirm('削除しますか？')) {
+                                if (confirm('{{ __('Delete') }}しますか？')) {
                                     document.getElementById('form_{{ $entry->id }}').submit();
                                 }    
                             ">
@@ -41,7 +41,27 @@
                             @endif
                         </div>
                         <div>{{ $entry->created_at }}</div>
-                        {{ __('Comment') }}{{ $entry->comments->count() }}件
+                        {{ __('Comment') }}{{ $entry->comments->count() }}件　いいね！{{ $entry->likes_count }}件
+                        @if (Auth::check()) {{-- ログイン済みである場合 --}}
+                            @php
+                                $like = $entry->likes()->where('user_id', Auth::user()->id)->first();
+                            @endphp
+                            @if ($like) {{-- いいね押下済である場合 --}}
+                            {{ Form::model($entry, array('action' => array('LikesController@destroy', $entry->id, $like->id))) }}
+                                <button type="submit">
+                                {{-- <img src="/images/icon_heart_red.svg"> --}}
+                                {{ __('Like') }}解除
+                                </button>
+                            {!! Form::close() !!}
+                            @else {{-- いいね未押下である場合 --}}
+                            {{ Form::model($entry, array('action' => array('LikesController@store', $entry->id))) }}
+                                <button type="submit">
+                                {{-- <img src="/images/icon_heart.svg"> --}}
+                                {{ __('Like') }}
+                                </button>
+                            {!! Form::close() !!}
+                            @endif
+                        @endif
                     </div>
                 </div>
             </div>
