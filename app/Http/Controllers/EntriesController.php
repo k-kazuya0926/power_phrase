@@ -13,10 +13,22 @@ class EntriesController extends Controller
     /**
      * 投稿一覧画面表示
      */
-    public function index() {
+    public function index(Request $request) {
         $pagenation_count = 9;
-        $entries = Entry::orderBy('created_at', 'desc')->paginate($pagenation_count);
-        return view('entries.index')->with('entries', $entries);
+
+        $query = \App\Entry::query();
+
+        $keyword = $request->input('keyword');        
+        if(!empty($keyword))
+        {
+            $query
+                ->where('power_phrase', 'like', '%'.$keyword.'%')
+                ->orWhere('source', 'like', '%'.$keyword.'%')
+                ->orWhere('episode', 'like', '%'.$keyword.'%');
+        }
+        
+        $entries = $query->orderBy('id','desc')->paginate($pagenation_count);
+        return view('entries.index')->with('entries', $entries)->with('keyword', $keyword);
     }
 
     /**

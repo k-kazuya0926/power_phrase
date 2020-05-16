@@ -8,7 +8,14 @@
     <p class="text-center">あなたを支える言葉を共有しよう！</p>
     <img class="img-fluid mx-auto d-block mb-5" src="images/3192174_s.jpg" alt="">
     <h3 class="text-center mb-3">投稿一覧</h3>
-    <div class="card-deck">
+    <form method="get" action="{{ url('/') }}" class="form-inline justify-content-center">
+        @csrf
+        <div class="form-group">
+            <input type="text" name="keyword" class="form-control" value="{{$keyword}}" placeholder="検索キーワード">
+        </div>
+        <input type="submit" value="検索" class="btn btn-info">
+    </form>
+    <div class="card-deck mt-3">
         @forelse ($entries as $entry)
             <div class="col-sm-4 mb-5">
                 <div class="card h-100">
@@ -66,11 +73,11 @@
                 </div>
             </div>
         @empty
-        <li>No entries yet</li>
+        <div class="col-12 text-center">投稿はありません。</div>
         @endforelse
     </div>
     <div class="d-flex justify-content-center">
-        {{ $entries->links() }}
+        {{ $entries->appends(['keyword'=>$keyword])->links() }}
     </div>
 </div>
 @endsection
