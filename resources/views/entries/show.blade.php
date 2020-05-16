@@ -33,7 +33,7 @@
                             <label for="episode" class="col-md-4 text-md-right">{{ __('Episode') }}</label>
 
                             <div class="col-md-6">
-                                {{ $entry->power_phrase }}
+                                {{ $entry->episode }}
                             </div>
                         </div>
 
