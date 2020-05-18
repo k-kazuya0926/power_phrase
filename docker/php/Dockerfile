@@ -1,5 +1,5 @@
-FROM php:7.1-fpm
-COPY php.ini /usr/local/etc/php/
+FROM php:7.1.33-fpm
+COPY ./docker/php/php.ini /usr/local/etc/php/
 
 RUN apt-get update \
   && apt-get install -y zlib1g-dev mariadb-client \
