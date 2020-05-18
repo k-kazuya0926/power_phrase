@@ -12,7 +12,6 @@ services:
 
   php:
     container_name: php
-    # build: ./docker/php
     build:
       context: .
       dockerfile: docker/php/Dockerfile
