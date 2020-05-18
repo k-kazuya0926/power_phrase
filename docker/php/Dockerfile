@@ -1,5 +1,11 @@
 FROM php:7.1.33-fpm
+
 COPY ./docker/php/php.ini /usr/local/etc/php/
+COPY . /var/www
+
+WORKDIR /var/www
+
+RUN chmod -R a+w storage/ bootstrap/cache
 
 RUN apt-get update \
   && apt-get install -y zlib1g-dev mariadb-client \
@@ -13,8 +19,3 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /composer
 
 ENV PATH $PATH:/composer/vendor/bin
-
-
-WORKDIR /var/www
-
-# RUN composer global require "laravel/installer"
