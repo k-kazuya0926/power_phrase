@@ -5,17 +5,11 @@ COPY . /var/www
 
 WORKDIR /var/www
 
-RUN chmod -R a+w storage/ bootstrap/cache
-
 RUN apt-get update \
-  && apt-get install -y zlib1g-dev mariadb-client \
+  && apt-get install -y zlib1g-dev mariadb-client unzip \
   && docker-php-ext-install zip pdo_mysql
 
-#Composer install
-COPY --from=composer /usr/bin/composer /usr/bin/composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
+RUN composer install
 
-ENV COMPOSER_ALLOW_SUPERUSER 1
-
-ENV COMPOSER_HOME /composer
-
-ENV PATH $PATH:/composer/vendor/bin
+RUN chmod -R a+w storage/ bootstrap/cache
