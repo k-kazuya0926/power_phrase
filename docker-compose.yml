@@ -1,14 +1,33 @@
 version: '3'
 
 services:
-  web:
-    container_name: web
-    build: ./docker
+  # web:
+  #   container_name: web
+  #   build: ./docker/apache
+  #   ports:
+  #     - 80:80
+  #   privileged: true
+  #   volumes:
+  #     - .:/var/www/html
+
+  php:
+    container_name: php
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    # 開発環境の場合はマウント
+    volumes:
+      - .:/var/www
+
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+    container_name: nginx
     ports:
       - 80:80
-    privileged: true
-    volumes:
-      - .:/var/www/html
+    depends_on:
+      - php
 
   db:
     image: mysql:5.7
@@ -26,14 +45,3 @@ services:
       - ./docker/db/sql:/docker-entrypoint-initdb.d
     ports:
       - 3306:3306
-
-  phpmyadmin:
-    container_name: phpmyadmin
-    image: phpmyadmin/phpmyadmin
-    environment:
-      - PMA_ARBITRARY=1
-      - PMA_HOSTS=db-host
-      - PMA_USER=root
-      - PMA_PASSWORD=root
-    ports:
-      - 8080:80
