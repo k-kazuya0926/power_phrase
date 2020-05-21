@@ -24,7 +24,7 @@ https://www.power-phrase.com/
     - ALB
     - ACM
 - Deployer 6.7.1
-- Docker Desktop for Mac 2.2.0.3(Apache+PHP+MySQLの開発環境構築)
+- Docker Desktop for Mac 2.2.0.3(nginx+PHP-FPM+MySQLの開発環境構築)
     - Docker 19.03.5
     - Docker Compose 1.25.4
 - PHPUnit 7.5.20
