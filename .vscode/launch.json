@@ -8,16 +8,8 @@
             "port": 9000,
             "stopOnEntry": false,
             "pathMappings": {
-                "/var/www/html/laravel_lessons/power_phrase": "${workspaceRoot}"
+                "/var/www": "${workspaceRoot}"
             }
-        },
-        {
-            "name": "Launch currently open script",
-            "type": "php",
-            "request": "launch",
-            "program": "${file}",
-            "cwd": "${fileDirname}",
-            "port": 9000
         }
     ]
 }
