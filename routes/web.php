@@ -24,4 +24,5 @@ Route::post('/entries/{entry}/likes/{like}', 'LikesController@destroy');
 
 Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/users/{user}/edit', 'UsersController@edit');
+Route::patch('/users/{user}', 'UsersController@update');
