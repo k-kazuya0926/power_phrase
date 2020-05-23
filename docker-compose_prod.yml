@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  php:
+    container_name: php
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile_prod
+    image: 329892552245.dkr.ecr.ap-northeast-1.amazonaws.com/power_phrase_php
+
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+    image: 329892552245.dkr.ecr.ap-northeast-1.amazonaws.com/power_phrase_nginx
+    container_name: nginx
+    ports:
+      - 80:80
+    depends_on:
+      - php
