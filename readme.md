@@ -23,12 +23,12 @@ https://www.power-phrase.com/
     - Route53
     - ALB
     - ACM
-- Deployer 6.7.1
 - Docker Desktop for Mac 2.2.0.3(nginx+PHP-FPM+MySQLの開発環境構築)
     - Docker 19.03.5
     - Docker Compose 1.25.4
+- Deployer 6.7.1
 - PHPUnit 7.5.20
-- Larastan 0.4.3(静的解析)
+- X-debug
 
 ## インフラ構成図
 
