@@ -6,4 +6,6 @@ WORKDIR /var/www
 
 RUN apt-get update \
   && apt-get install -y zlib1g-dev mariadb-client unzip \
-  && docker-php-ext-install zip pdo_mysql
+  && docker-php-ext-install zip pdo_mysql \
+  && pecl install xdebug \
+  && docker-php-ext-enable xdebug
