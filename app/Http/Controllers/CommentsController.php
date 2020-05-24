@@ -26,4 +26,12 @@ class CommentsController extends Controller
         });
         return redirect()->action('EntriesController@show', $entry);
     }
+
+    /**
+     * コメント削除処理
+     */
+    public function destroy(Comment $comment) {
+        $comment->delete();
+        return redirect()->action('EntriesController@show', $comment->entry);
+    }
 }
