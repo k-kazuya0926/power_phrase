@@ -45,7 +45,7 @@
                                 @foreach ($entry->comments as $comment)
                                 <li>
                                     {{ $comment->created_at }}　{{ $comment->user->name }}
-                                    <p>{{ $comment->comment }}</p>
+                                    <p>{!! nl2br(e($comment->comment)) !!}</p>
                                     {{-- <a href="#" class="del" data-id="{{ $comment->id }}">[x]</a>
                                     <form method="entry" action="{{ action('CommentsController@destroy', [$entry, $comment]) }}" id="form_{{ $comment->id }}">
                                         @csrf
