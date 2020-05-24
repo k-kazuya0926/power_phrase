@@ -44,7 +44,8 @@
                                 <ul>
                                 @foreach ($entry->comments as $comment)
                                 <li>
-                                    {{ $comment->created_at }} {{ $comment->comment }}
+                                    {{ $comment->created_at }}　{{ $comment->user->name }}
+                                    <p>{{ $comment->comment }}</p>
                                     {{-- <a href="#" class="del" data-id="{{ $comment->id }}">[x]</a>
                                     <form method="entry" action="{{ action('CommentsController@destroy', [$entry, $comment]) }}" id="form_{{ $comment->id }}">
                                         @csrf
@@ -53,7 +54,12 @@
                                 </li>
                                 @endforeach
                                 </ul>
+                            </div>
+                        </div>
 
+                        @auth
+                        <div class="form-group row">
+                            <div class="col-md-6 offset-md-4">
                                 <textarea id="comment" type="comment" class="form-control @error('comment') is-invalid @enderror" name="comment" rows="5" required></textarea>
 
                                 @error('comment')
@@ -61,16 +67,13 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary mt-3">
                                     {{ __('Comment') }}登録
                                 </button>
                             </div>
                         </div>
+                        @endauth
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
