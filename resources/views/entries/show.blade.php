@@ -45,12 +45,25 @@
                                 @foreach ($entry->comments as $comment)
                                 <li>
                                     {{ $comment->created_at }}　{{ $comment->user->name }}
-                                    <p>{!! nl2br(e($comment->comment)) !!}</p>
-                                    {{-- <a href="#" class="del" data-id="{{ $comment->id }}">[x]</a>
-                                    <form method="entry" action="{{ action('CommentsController@destroy', [$entry, $comment]) }}" id="form_{{ $comment->id }}">
+                                    @if ($entry->user_id == Auth::id())
+                                    <a href="#" class="del" data-id="{{ $comment->id }}" onclick="
+                                        event.preventDefault();
+                                        if (confirm('{{ __('Delete') }}しますか？')) {
+                                            document.getElementById('form_{{ $comment->id }}').submit();
+                                        }    
+                                    ">
+                                        <svg class="bi bi-trash" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M5.5 5.5A.5.5 0 016 6v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm2.5 0a.5.5 0 01.5.5v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm3 .5a.5.5 0 00-1 0v6a.5.5 0 001 0V6z"/>
+                                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 01-1 1H13v9a2 2 0 01-2 2H5a2 2 0 01-2-2V4h-.5a1 1 0 01-1-1V2a1 1 0 011-1H6a1 1 0 011-1h2a1 1 0 011 1h3.5a1 1 0 011 1v1zM4.118 4L4 4.059V13a1 1 0 001 1h6a1 1 0 001-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" clip-rule="evenodd"/>
+                                        </svg>
+                                    </a>
+                                    <form method="post" action="{{ url('/comments', $comment->id) }}" id="form_{{ $comment->id }}">
                                         @csrf
                                         {{ method_field('delete') }}
-                                    </form> --}}
+                                    </form>
+                                    @endif
+
+                                    <p>{!! nl2br(e($comment->comment)) !!}</p>
                                 </li>
                                 @endforeach
                                 </ul>

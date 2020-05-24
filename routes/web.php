@@ -21,6 +21,7 @@ Route::delete('/entries/{entry}', 'EntriesController@destroy');
 Route::post('/entries/{entry}/comments', 'CommentsController@store');
 Route::post('/entries/{entry}/likes', 'LikesController@store');
 Route::post('/entries/{entry}/likes/{like}', 'LikesController@destroy');
+Route::delete('/comments/{comment}', 'CommentsController@destroy');
 
 Auth::routes();
 
