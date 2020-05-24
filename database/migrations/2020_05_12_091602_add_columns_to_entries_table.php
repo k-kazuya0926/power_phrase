@@ -26,7 +26,7 @@ class AddColumnsToEntriesTable extends Migration
     public function down()
     {
         Schema::table('entries', function (Blueprint $table) {
-            Schema::dropIfExists('likes_count');
+            $table->dropColumn('likes_count');
         });
     }
 }
