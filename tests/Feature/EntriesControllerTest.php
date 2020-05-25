@@ -41,6 +41,7 @@ class EntriesControllerTest extends TestCase
         $this->assertTestIndexCommon($response);
         $response
             ->assertSee('投稿する')
+            ->assertSee('更新')
             ->assertSee('ログアウト');
     }
 
@@ -53,7 +54,8 @@ class EntriesControllerTest extends TestCase
             ->assertStatus(200)
             ->assertViewIs('entries.index') // // viewファイル
             ->assertSee('Power Phrase')
-            ->assertSee('投稿一覧');
+            ->assertSee('投稿一覧')
+            ->assertSee('検索');
     }
 
     /**
@@ -67,10 +69,11 @@ class EntriesControllerTest extends TestCase
 
         $response
             ->assertStatus(200)
+            ->assertSee('投稿詳細')
+            ->assertSee('パワーフレーズ')
             ->assertSee('どこで知りましたか？')
             ->assertSee('エピソード')
             ->assertSee('コメント')
-            ->assertSee('コメント登録')
             ->assertSee('戻る');
     }
 
