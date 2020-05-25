@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -18,8 +19,9 @@ class CommentsControllerTest extends TestCase
      */
     public function testStore()
     {
-        $response = $this->post(
-            '/posts/1/comments',
+        $user = factory(User::class)->create();
+        $response = $this->actingAs($user)->post(
+            '/entries/1/comments',
             ['comment' => 'テストコメント']
         );
 
