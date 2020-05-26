@@ -16,14 +16,14 @@ class CommentsController extends Controller
      */
     public function store(Request $request, Entry $entry) {
         DB::transaction(function() use ($request, $entry) {
-            $this->validate($request, [
-                'comment' => 'required'
-            ]);
+            $this->validate($request, Comment::$rules);
             $comment = new Comment();
+            $comment->entry_id = $entry->id;
             $comment->comment = $request->comment;
             $comment->user_id = Auth::id();
-            $entry->comments()->save($comment);
+            $comment->save();
         });
+
         return redirect()->action('EntriesController@show', $entry);
     }
 

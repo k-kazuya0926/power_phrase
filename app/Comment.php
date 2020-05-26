@@ -12,6 +12,9 @@ class Comment extends Model
     protected $table = 'comments';
     protected $dates = ['deleted_at'];
     protected $fillable = ['comment'];
+    public static $rules = [
+        'comment' => 'required'
+    ];
 
     public function entry() {
         return $this->belongsTo('App\Entry');
