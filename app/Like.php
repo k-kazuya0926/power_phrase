@@ -18,12 +18,12 @@ class Like extends Model
 
     protected $fillable = ['user_id', 'entry_id'];
 
-    public function Entry()
+    public function entry()
     {
       return $this->belongsTo('App\Entry');
     }
 
-    public function User()
+    public function user()
     {
       return $this->belongsTo('App\User');
     }
