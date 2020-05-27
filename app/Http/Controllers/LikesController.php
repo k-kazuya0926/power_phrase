@@ -11,24 +11,33 @@ use App\Entry;
 
 class LikesController extends Controller
 {
-    public function store(Request $request, $entryId)
+    /**
+     * いいね登録処理
+     *
+     * @param Request $request
+     * @param Entry $entry
+     * @return void
+     */
+    public function store(Request $request, Entry $entry)
     {
-        Like::create(
-          array(
-            'user_id' => Auth::user()->id,
-            'entry_id' => $entryId
-          )
-        );
+      $like = new Like();
+      $like->user_id = Auth::user()->id;
+      $like->entry_id = $entry->id;
+      $like->save();
 
-        $entry = Entry::findOrFail($entryId);
-
-        return redirect()
-             ->action('EntriesController@index');
+      return redirect()
+            ->action('EntriesController@index');
     }
 
-    public function destroy($entryId, $likeId) {
-      $entry = Entry::findOrFail($entryId);
-      $entry->like_by()->findOrFail($likeId)->delete();
+    /**
+     * いいね削除処理
+     *
+     * @param Entry $entry
+     * @param Like $like
+     * @return void
+     */
+    public function destroy(Entry $entry, Like $like) {
+      $like->delete();
 
       return redirect()
              ->action('EntriesController@index');

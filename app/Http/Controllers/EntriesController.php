@@ -10,12 +10,12 @@ use App\Http\Requests\EntryRequest;
 
 class EntriesController extends Controller
 {
+    const PAGENATION_COUNT = 9;
+
     /**
      * 投稿一覧画面表示
      */
     public function index(Request $request) {
-        $pagenation_count = 9;
-
         $query = \App\Entry::query();
 
         $keyword = $request->input('keyword');        
@@ -27,7 +27,7 @@ class EntriesController extends Controller
                 ->orWhere('episode', 'like', '%'.$keyword.'%');
         }
         
-        $entries = $query->orderBy('id','desc')->paginate($pagenation_count);
+        $entries = $query->orderBy('id','desc')->paginate(self::PAGENATION_COUNT);
         return view('entries.index')->with('entries', $entries)->with('keyword', $keyword);
     }
 

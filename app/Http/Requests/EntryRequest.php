@@ -30,7 +30,7 @@ class EntryRequest extends FormRequest
 
     public function messages() {
         return [
-            'power_phrase.required' => 'please enter power_phrase!!!'
+            'power_phrase.required' => '必須項目です。'
         ];
     }
 }
