@@ -1,22 +1,23 @@
 @extends('layouts.app')
 
-@section('title', 'Entries')
-
 @section('content')
 <div class="container">
-    <h1 class="text-center">Power Phrase</h1>
-    <p class="text-center">あなたを支える言葉を共有しよう！</p>
-    <img class="img-fluid mx-auto d-block mb-5" src="/images/3192174_s.jpg" alt="" width="400px" height="300px">
-    <h3 class="text-center mb-3">投稿一覧</h3>
-    <form method="get" action="{{ url('/') }}" class="form-inline justify-content-center">
-        @csrf
-        <div class="form-group">
-            <input type="text" name="keyword" class="form-control" value="{{$keyword}}" placeholder="検索キーワード">
-        </div>
-        <input type="submit" value="検索" class="btn btn-info">
-    </form>
+    <h1 class="text-center">
+        {{ $user->name }}
+        @if ($user->id == Auth::id())
+        <a href="{{ action('UsersController@edit', $user) }}" class="edit">
+            <svg class="bi bi-pencil-square" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.502 1.94a.5.5 0 010 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 01.707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 00-.121.196l-.805 2.414a.25.25 0 00.316.316l2.414-.805a.5.5 0 00.196-.12l6.813-6.814z"/>
+                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 002.5 15h11a1.5 1.5 0 001.5-1.5v-6a.5.5 0 00-1 0v6a.5.5 0 01-.5.5h-11a.5.5 0 01-.5-.5v-11a.5.5 0 01.5-.5H9a.5.5 0 000-1H2.5A1.5 1.5 0 001 2.5v11z" clip-rule="evenodd"/>
+            </svg>
+        </a>
+        @endif
+    </h1>
+    {{-- <img class="img-fluid mx-auto d-block mb-5" src="/images/3192174_s.jpg" alt="" width="400px" height="300px"> --}} {{-- TODO プロフィール画像表示 --}}
+
+    <h3 class="text-center my-3">投稿一覧</h3>
     <div class="card-deck mt-3">
-        @forelse ($entries as $entry)
+        @forelse ($user->entries as $entry)
             <div class="col-sm-4 mb-5">
                 <div class="card h-100">
                     <div class="card-body">
@@ -86,8 +87,63 @@
         <div class="col-12 text-center">投稿はありません。</div>
         @endforelse
     </div>
-    <div class="d-flex justify-content-center">
-        {{ $entries->appends(['keyword'=>$keyword])->links() }}
+    {{-- <div class="d-flex justify-content-center">
+        {{ $user->entries->links() }}
+    </div> --}}
+
+    <h3 class="text-center my-3">いいね！一覧</h3>
+    <div class="card-deck mt-3">
+        @forelse ($user->likes as $like)
+            <div class="col-sm-4 mb-5">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="{{ action('EntriesController@show', $like->entry) }}">
+                                {{ $like->entry->power_phrase }}
+                            </a>
+                        </h4>
+                        <h5>@if (!empty($like->entry->source)){{ $like->entry->source }}@endif</h5>
+                        <p>{{ $like->entry->episode }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <div>
+                            <a href="{{ action('UsersController@show', $like->entry->user) }}">{{ $like->entry->user->name }}</a>
+                            @if ($like->entry->user_id == Auth::id())
+                            <a href="{{ action('EntriesController@edit', $like->entry) }}" class="edit">
+                                <svg class="bi bi-pencil-square" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15.502 1.94a.5.5 0 010 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 01.707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 00-.121.196l-.805 2.414a.25.25 0 00.316.316l2.414-.805a.5.5 0 00.196-.12l6.813-6.814z"/>
+                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 002.5 15h11a1.5 1.5 0 001.5-1.5v-6a.5.5 0 00-1 0v6a.5.5 0 01-.5.5h-11a.5.5 0 01-.5-.5v-11a.5.5 0 01.5-.5H9a.5.5 0 000-1H2.5A1.5 1.5 0 001 2.5v11z" clip-rule="evenodd"/>
+                                </svg>
+                            </a>
+                            <a href="#" class="del" data-id="{{ $like->entry->id }}" onclick="
+                                event.preventDefault();
+                                if (confirm('{{ __('Delete') }}しますか？')) {
+                                    document.getElementById('form_{{ $like->entry->id }}').submit();
+                                }    
+                            ">
+                                <svg class="bi bi-trash" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5.5 5.5A.5.5 0 016 6v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm2.5 0a.5.5 0 01.5.5v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm3 .5a.5.5 0 00-1 0v6a.5.5 0 001 0V6z"/>
+                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 01-1 1H13v9a2 2 0 01-2 2H5a2 2 0 01-2-2V4h-.5a1 1 0 01-1-1V2a1 1 0 011-1H6a1 1 0 011-1h2a1 1 0 011 1h3.5a1 1 0 011 1v1zM4.118 4L4 4.059V13a1 1 0 001 1h6a1 1 0 001-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" clip-rule="evenodd"/>
+                                </svg>
+                            </a>
+                            <form method="post" action="{{ url('/entries', $like->entry->id) }}" id="form_{{ $like->entry->id }}">
+                                @csrf
+                                {{ method_field('delete') }}
+                            </form>
+                            @endif
+                        </div>
+                        <div>{{ $like->entry->created_at }}</div>
+                        {{ __('Comment') }}{{ $like->entry->comments->count() }}件　いいね！{{ $like->entry->likes_count }}件
+                        
+                    </div>
+                </div>
+            </div>
+        @empty
+        <div class="col-12 text-center">投稿はありません。</div>
+        @endforelse
     </div>
+    {{-- <div class="d-flex justify-content-center">
+        {{ $user->entries->links() }}
+    </div> --}}
 </div>
 @endsection

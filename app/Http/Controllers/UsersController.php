@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\Hash;
 class UsersController extends Controller
 {
     /**
+     * ユーザー詳細画面表示
+     */
+    public function show(User $user) {
+        return view('auth.show')->with('user', $user);
+    }
+    
+    /**
      * ユーザー更新画面表示
      */
     public function edit(User $user) {
