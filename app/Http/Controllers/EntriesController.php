@@ -16,7 +16,7 @@ class EntriesController extends Controller
      * 投稿一覧画面表示
      */
     public function index(Request $request) {
-        $query = \App\Entry::query();
+        $query = Entry::query();
 
         $keyword = $request->input('keyword');        
         if(!empty($keyword))
@@ -55,9 +55,6 @@ class EntriesController extends Controller
         $entry->episode = empty($request->episode) ? '' : $request->episode;
         $entry->user_id = Auth::id();
         $entry->save();
-
-        // $request->photo->store('public/profile_images'); // /storage/appからの相対パス
-
         return redirect('/');
     }
 
