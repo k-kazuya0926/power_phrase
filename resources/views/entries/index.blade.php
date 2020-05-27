@@ -6,7 +6,7 @@
 <div class="container">
     <h1 class="text-center">Power Phrase</h1>
     <p class="text-center">あなたを支える言葉を共有しよう！</p>
-    <img class="img-fluid mx-auto d-block mb-5" src="images/3192174_s.jpg" alt="">
+    <img class="img-fluid mx-auto d-block mb-5" src="images/3192174_s.jpg" alt="" width="400px" height="300px">
     <h3 class="text-center mb-3">投稿一覧</h3>
     <form method="get" action="{{ url('/') }}" class="form-inline justify-content-center">
         @csrf
