@@ -62,8 +62,8 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ action('UsersController@edit', Auth::user()) }}">
-                                        {{ __('Edit') }}
+                                    <a class="dropdown-item" href="{{ action('UsersController@show', Auth::user()) }}">
+                                        マイページ
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"

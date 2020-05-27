@@ -25,5 +25,6 @@ Route::delete('/comments/{comment}', 'CommentsController@destroy');
 
 Auth::routes();
 
+Route::get('/users/{user}', 'UsersController@show')->where('entry', '[0-9]+');
 Route::get('/users/{user}/edit', 'UsersController@edit');
 Route::patch('/users/{user}', 'UsersController@update');
