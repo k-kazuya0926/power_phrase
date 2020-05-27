@@ -24,13 +24,6 @@
                             <a href="{{ action('EntriesController@show', $entry) }}">
                                 {{ $entry->power_phrase }}
                             </a>
-                        </h4>
-                        <h5>@if (!empty($entry->source)){{ $entry->source }}@endif</h5>
-                        <p>{{ $entry->episode }}</p>
-                    </div>
-                    <div class="card-footer">
-                        <div>
-                            <a href="{{ action('UsersController@show', $entry->user) }}">{{ $entry->user->name }}</a>
                             @if ($entry->user_id == Auth::id())
                             <a href="{{ action('EntriesController@edit', $entry) }}" class="edit">
                                 <svg class="bi bi-pencil-square" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -54,6 +47,13 @@
                                 {{ method_field('delete') }}
                             </form>
                             @endif
+                        </h4>
+                        <h5>@if (!empty($entry->source)){{ $entry->source }}@endif</h5>
+                        <p>{{ $entry->episode }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <div>
+                            <a href="{{ action('UsersController@show', $entry->user) }}">{{ $entry->user->name }}</a>
                         </div>
                         <div>{{ $entry->created_at }}</div>
                         {{ __('Comment') }}{{ $entry->comments->count() }}件　いいね！{{ $entry->likes_count }}件

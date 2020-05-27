@@ -25,13 +25,6 @@
                             <a href="{{ action('EntriesController@show', $entry) }}">
                                 {{ $entry->power_phrase }}
                             </a>
-                        </h4>
-                        <h5>@if (!empty($entry->source)){{ $entry->source }}@endif</h5>
-                        <p>{{ $entry->episode }}</p>
-                    </div>
-                    <div class="card-footer">
-                        <div>
-                            <a href="{{ action('UsersController@show', $entry->user) }}">{{ $entry->user->name }}</a>
                             @if ($entry->user_id == Auth::id())
                             <a href="{{ action('EntriesController@edit', $entry) }}" class="edit">
                                 <svg class="bi bi-pencil-square" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -55,6 +48,13 @@
                                 {{ method_field('delete') }}
                             </form>
                             @endif
+                        </h4>
+                        <h5>@if (!empty($entry->source)){{ $entry->source }}@endif</h5>
+                        <p>{{ $entry->episode }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <div>
+                            <a href="{{ action('UsersController@show', $entry->user) }}">{{ $entry->user->name }}</a>
                         </div>
                         <div>{{ $entry->created_at }}</div>
                         {{ __('Comment') }}{{ $entry->comments->count() }}件　いいね！{{ $entry->likes_count }}件
@@ -101,13 +101,6 @@
                             <a href="{{ action('EntriesController@show', $like->entry) }}">
                                 {{ $like->entry->power_phrase }}
                             </a>
-                        </h4>
-                        <h5>@if (!empty($like->entry->source)){{ $like->entry->source }}@endif</h5>
-                        <p>{{ $like->entry->episode }}</p>
-                    </div>
-                    <div class="card-footer">
-                        <div>
-                            <a href="{{ action('UsersController@show', $like->entry->user) }}">{{ $like->entry->user->name }}</a>
                             @if ($like->entry->user_id == Auth::id())
                             <a href="{{ action('EntriesController@edit', $like->entry) }}" class="edit">
                                 <svg class="bi bi-pencil-square" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -131,6 +124,13 @@
                                 {{ method_field('delete') }}
                             </form>
                             @endif
+                        </h4>
+                        <h5>@if (!empty($like->entry->source)){{ $like->entry->source }}@endif</h5>
+                        <p>{{ $like->entry->episode }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <div>
+                            <a href="{{ action('UsersController@show', $like->entry->user) }}">{{ $like->entry->user->name }}</a>
                         </div>
                         <div>{{ $like->entry->created_at }}</div>
                         {{ __('Comment') }}{{ $like->entry->comments->count() }}件　いいね！{{ $like->entry->likes_count }}件
