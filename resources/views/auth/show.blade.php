@@ -3,6 +3,9 @@
 @section('content')
 <div class="container">
     <h1 class="text-center">
+        @if (!empty($user->image_filename))
+        <img src="/storage/profile_images/{{ $user->image_filename }}" width="200px" height="200px">
+        @endif
         {{ $user->name }}
         @if ($user->id == Auth::id())
         <a href="{{ action('UsersController@edit', $user) }}" class="edit">
@@ -13,7 +16,6 @@
         </a>
         @endif
     </h1>
-    {{-- <img class="img-fluid mx-auto d-block mb-5" src="/images/3192174_s.jpg" alt="" width="400px" height="300px"> --}} {{-- TODO プロフィール画像表示 --}}
 
     <h3 class="text-center my-3">投稿一覧</h3>
     <div class="card-deck mt-3">
@@ -54,6 +56,9 @@
                     </div>
                     <div class="card-footer">
                         <div>
+                            @if (!empty($entry->user->image_filename))
+                            <img src="/storage/profile_images/{{ $entry->user->image_filename }}" width="35px" height="35px">
+                            @endif
                             <a href="{{ action('UsersController@show', $entry->user) }}">{{ $entry->user->name }}</a>
                         </div>
                         <div>{{ $entry->created_at }}</div>
@@ -130,6 +135,9 @@
                     </div>
                     <div class="card-footer">
                         <div>
+                            @if (!empty($like->entry->user->image_filename))
+                            <img src="/storage/profile_images/{{ $like->entry->user->image_filename }}" width="35px" height="35px">
+                            @endif
                             <a href="{{ action('UsersController@show', $like->entry->user) }}">{{ $like->entry->user->name }}</a>
                         </div>
                         <div>{{ $like->entry->created_at }}</div>

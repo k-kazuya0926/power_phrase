@@ -8,9 +8,22 @@
                 <div class="card-header">ユーザー更新</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ url('/users', $user->id) }}">
+                    <form method="POST" action="{{ url('/users', $user->id) }}" enctype="multipart/form-data">
                         @csrf
                         {{ method_field('patch') }}
+                        <div class="form-group row">
+                            <label for="profile_image" class="col-md-4 col-form-label text-md-right">プロフィール画像</label>
+
+                            <div class="col-md-6">
+                                <input type="file" name="profile_image">
+
+                                @error('profile_image')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
@@ -44,7 +57,6 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                {{-- <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password"> --}}
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password">
 
                                 @error('password')
@@ -59,7 +71,6 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
-                                {{-- <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password"> --}}
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password">
                             </div>
                         </div>
