@@ -28,6 +28,8 @@ services:
       - 80:80
     depends_on:
       - php
+    volumes:
+      - .:/var/www
 
   db:
     image: mysql:5.7

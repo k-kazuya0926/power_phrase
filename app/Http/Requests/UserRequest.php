@@ -27,6 +27,7 @@ class UserRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'], // TODO 重複チェック
             'password' => ['confirmed'],
+            'profile_image' => 'file|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
 }
