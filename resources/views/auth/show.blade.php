@@ -4,7 +4,7 @@
 <div class="container">
     <h1 class="text-center">
         @if (!empty($user->image_filename))
-        <img src="/storage/profile_images/{{ $user->image_filename }}" width="200px" height="200px">
+        <img src="/storage/profile_images/{{ $user->image_filename }}" width="200px" height="200px" class="rounded-circle">
         @endif
         {{ $user->name }}
         @if ($user->id == Auth::id())
@@ -57,7 +57,7 @@
                     <div class="card-footer">
                         <div>
                             @if (!empty($entry->user->image_filename))
-                            <img src="/storage/profile_images/{{ $entry->user->image_filename }}" width="35px" height="35px">
+                            <img src="/storage/profile_images/{{ $entry->user->image_filename }}" width="35px" height="35px" class="rounded-circle">
                             @endif
                             <a href="{{ action('UsersController@show', $entry->user) }}">{{ $entry->user->name }}</a>
                         </div>
@@ -136,7 +136,7 @@
                     <div class="card-footer">
                         <div>
                             @if (!empty($like->entry->user->image_filename))
-                            <img src="/storage/profile_images/{{ $like->entry->user->image_filename }}" width="35px" height="35px">
+                            <img src="/storage/profile_images/{{ $like->entry->user->image_filename }}" width="35px" height="35px" class="rounded-circle">
                             @endif
                             <a href="{{ action('UsersController@show', $like->entry->user) }}">{{ $like->entry->user->name }}</a>
                         </div>
