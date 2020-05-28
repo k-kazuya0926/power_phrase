@@ -15,6 +15,7 @@ https://www.power-phrase.com/
 - PHP 7.1.33
 - Laravel 5.8.38
 - Bootstrap 4.1.3
+- JQuery 3.5.1
 - nginx 1.16.1
 - Composer 1.10.1
 - AWS

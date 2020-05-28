@@ -31,7 +31,7 @@ class UsersController extends Controller
      */
     public function update(UserRequest $request, User $user) {
         DB::transaction(function() use ($request, $user) {
-            if ($request->file('profile_image')->isValid([])) {
+            if (!empty($request->file('profile_image'))) {
                 $filename = $request->profile_image->storeAs('public/profile_images', $user->id . '.jpg');
                 $user->image_filename = basename($filename);
             }

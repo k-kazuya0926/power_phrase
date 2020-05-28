@@ -12,20 +12,6 @@
                         @csrf
                         {{ method_field('patch') }}
                         <div class="form-group row">
-                            <label for="profile_image" class="col-md-4 col-form-label text-md-right">プロフィール画像</label>
-
-                            <div class="col-md-6">
-                                <input type="file" name="profile_image">
-
-                                @error('profile_image')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
@@ -73,6 +59,28 @@
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password">
                             </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="profile_image_div" class="col-md-4 col-form-label text-md-right">プロフィール画像</label>
+                            <div id="profile_image_div" class="input-group col-md-6">
+                                <div class="custom-file">
+                                    <input type="file" id="profile_image" class="custom-file-input" name="profile_image" />
+                                    <label class="custom-file-label" for="profile_image" data-browse="参照">ファイル選択...</label>
+                                </div>
+                                <div class="input-group-append">
+                                    <button type="button" class="btn btn-outline-secondary reset">取消</button>
+                                </div>
+
+                                @error('profile_image')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-4 col-form-label text-md-right"></div>
+                            <div id="preview" class="col-md-6"></div>
                         </div>
 
                         <div class="form-group row mb-0">
