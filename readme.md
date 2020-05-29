@@ -2,7 +2,7 @@
 
 心に残った言葉(パワーフレーズ)とそのエピソードを共有するサイトです。  
 
-<img width="1965" alt="トップページ" src="https://user-images.githubusercontent.com/61341861/83208323-557f7380-a190-11ea-9142-68e2f1700921.png">
+<img width="800px" alt="トップページ" src="https://user-images.githubusercontent.com/61341861/83208323-557f7380-a190-11ea-9142-68e2f1700921.png">
 
 ## URL
 
