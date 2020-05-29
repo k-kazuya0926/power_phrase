@@ -41,7 +41,7 @@ class EntriesControllerTest extends TestCase
         $this->assertTestIndexCommon($response);
         $response
             ->assertSee('投稿する')
-            ->assertSee('更新')
+            ->assertSee('マイページ')
             ->assertSee('ログアウト');
     }
 
