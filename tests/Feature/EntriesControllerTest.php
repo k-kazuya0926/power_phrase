@@ -13,12 +13,12 @@ class EntriesControllerTest extends TestCase
     use DatabaseTransactions;
 
     /**
-     * トップページ表示テスト　未ログイン
-     *
-     * @return void
+     * @test
      */
-    public function testIndex_beforeLogin()
+    public function index_トップページ_未ログイン()
     {
+        factory(User::class, 10)->create();
+
         $response = $this->get('/');
 
         $this->assertTestIndexCommon($response);
@@ -29,11 +29,9 @@ class EntriesControllerTest extends TestCase
     }
 
     /**
-     * トップページ表示テスト　ログイン済み
-     *
-     * @return void
+     * @test
      */
-    public function testIndex_afterLogin()
+    public function index_トップページ_ログイン済み()
     {
         $user = factory(User::class)->create();
         $response = $this->actingAs($user)->get('/');
@@ -59,11 +57,9 @@ class EntriesControllerTest extends TestCase
     }
 
     /**
-     * 投稿詳細画面表示テスト
-     *
-     * @return void
+     * @test
      */
-    public function testShow()
+    public function show_投稿詳細画面表示()
     {
         $response = $this->get('/entries/1');
 
@@ -78,11 +74,9 @@ class EntriesControllerTest extends TestCase
     }
 
     /**
-     * 投稿画面表示テスト
-     *
-     * @return void
+     * @test
      */
-    public function testCreate()
+    public function create_投稿登録画面表示()
     {
         $response = $this->get('/entries/create');
 
@@ -96,11 +90,9 @@ class EntriesControllerTest extends TestCase
     }
 
     /**
-     * 投稿登録処理テスト
-     *
-     * @return void
+     * @test
      */
-    public function testStore()
+    public function store_投稿登録処理()
     {
         $user = factory(User::class)->create();
         $response = $this->actingAs($user)->post(
@@ -117,11 +109,9 @@ class EntriesControllerTest extends TestCase
     }
     
     /**
-     * 投稿更新画面表示テスト
-     *
-     * @return void
+     * @test
      */
-    public function testEdit()
+    public function edit_投稿更新画面表示()
     {
         $response = $this->get('/entries/1/edit');
 
@@ -135,11 +125,9 @@ class EntriesControllerTest extends TestCase
     }
 
     /**
-     * 投稿更新処理テスト
-     *
-     * @return void
+     * @test
      */
-    public function testUpdate()
+    public function update_投稿更新処理()
     {
         $user = factory(User::class)->create();
         $response = $this->actingAs($user)->patch(
@@ -156,11 +144,9 @@ class EntriesControllerTest extends TestCase
     }
 
     /**
-     * 投稿削除処理テスト
-     *
-     * @return void
+     * @test
      */
-    public function testDestroy()
+    public function destroy_投稿削除処理()
     {
         $user = factory(User::class)->create();
         $response = $this->actingAs($user)->delete('/entries/1');

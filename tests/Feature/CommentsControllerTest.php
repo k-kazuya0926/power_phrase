@@ -13,11 +13,9 @@ class CommentsControllerTest extends TestCase
     use DatabaseTransactions;
 
     /**
-     * コメント登録処理テスト
-     *
-     * @return void
+     * @test
      */
-    public function testStore()
+    public function store_コメント登録処理()
     {
         $user = factory(User::class)->create();
         $response = $this->actingAs($user)->post(
