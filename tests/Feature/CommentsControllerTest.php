@@ -14,9 +14,10 @@ class CommentsControllerTest extends TestCase
 
     const USER_ID = 1;
     const ENTRY_ID = 1;
+    
     private $user;
 
-    protected function setUp():void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -31,12 +32,14 @@ class CommentsControllerTest extends TestCase
     /**
      * @test
      */
-    public function store_コメント登録処理()
+    public function store_コメント登録成功()
     {
         $comment = 'テストコメント';
         $response = $this->actingAs($this->user)->post(
             '/entries/' . self::ENTRY_ID . '/comments',
-            ['comment' => $comment]
+            [
+                'comment' => $comment
+            ]
         );
 
         $response->assertRedirect('/entries/' . self::ENTRY_ID);

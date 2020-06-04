@@ -2,26 +2,45 @@
 
 namespace Tests\Feature;
 
+use App\Entry;
 use App\User;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class EntriesControllerTest extends TestCase
 {
-    use DatabaseTransactions;
+    use RefreshDatabase;
+
+    const USER_ID = 1;
+    const ENTRY_ID = 1;
+
+    private $user;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->user = factory(User::class)->create([
+            'id' => self::USER_ID
+        ]);
+        factory(Entry::class)->create([
+            'id' => self::ENTRY_ID,
+            'power_phrase' => 'テストフレーズ',
+            'source' => 'テストソース',
+            'episode' => 'テストエピソード',
+            'user_id' => 1
+        ]);
+    }
 
     /**
      * @test
      */
     public function index_トップページ_未ログイン()
     {
-        factory(User::class, 10)->create();
-
         $response = $this->get('/');
 
-        $this->assertTestIndexCommon($response);
+        $this->assertIndexCommon($response);
         $response
             ->assertSee('おためしログイン')
             ->assertSee('ログイン')
@@ -33,10 +52,9 @@ class EntriesControllerTest extends TestCase
      */
     public function index_トップページ_ログイン済み()
     {
-        $user = factory(User::class)->create();
-        $response = $this->actingAs($user)->get('/');
+        $response = $this->actingAs($this->user)->get('/');
 
-        $this->assertTestIndexCommon($response);
+        $this->assertIndexCommon($response);
         $response
             ->assertSee('投稿する')
             ->assertSee('マイページ')
@@ -46,11 +64,11 @@ class EntriesControllerTest extends TestCase
     /**
      * トップページ共通内容テスト
      */
-    private function assertTestIndexCommon($response)
+    private function assertIndexCommon($response)
     {
         $response
             ->assertStatus(200)
-            ->assertViewIs('entries.index') // // viewファイル
+            ->assertViewIs('entries.index') // viewファイル
             ->assertSee('Power Phrase')
             ->assertSee('投稿一覧')
             ->assertSee('検索');
@@ -61,16 +79,19 @@ class EntriesControllerTest extends TestCase
      */
     public function show_投稿詳細画面表示()
     {
-        $response = $this->get('/entries/1');
+        $response = $this->get('/entries/' . self::ENTRY_ID);
 
         $response
             ->assertStatus(200)
             ->assertSee('投稿詳細')
             ->assertSee('パワーフレーズ')
+            ->assertSee('テストフレーズ')
             ->assertSee('どこで知りましたか？')
+            ->assertSee('テストソース')
             ->assertSee('エピソード')
+            ->assertSee('テストエピソード')
             ->assertSee('コメント')
-            ->assertSee('戻る');
+            ->assertSee('トップページへ戻る');
     }
 
     /**
@@ -78,15 +99,16 @@ class EntriesControllerTest extends TestCase
      */
     public function create_投稿登録画面表示()
     {
-        $response = $this->get('/entries/create');
+        $response = $this->actingAs($this->user)->get('/entries/create');
 
         $response
             ->assertStatus(200)
             ->assertSee('パワーフレーズ')
             ->assertSee('どこで知りましたか？')
+            ->assertSee('例：本のタイトル、WebサイトのURL、友人からなど')
             ->assertSee('エピソード')
             ->assertSee('投稿')
-            ->assertSee('戻る');
+            ->assertSee('トップページへ戻る');
     }
 
     /**
@@ -94,11 +116,11 @@ class EntriesControllerTest extends TestCase
      */
     public function store_投稿登録処理()
     {
-        $user = factory(User::class)->create();
-        $response = $this->actingAs($user)->post(
+        $power_phrase = '投稿登録処理テスト';
+        $response = $this->actingAs($this->user)->post(
             '/entries',
             [
-                'power_phrase' => 'テストフレーズ',
+                'power_phrase' => $power_phrase,
                 'source' => '友人',
                 'episode' => 'テスト'
             ]
@@ -106,6 +128,9 @@ class EntriesControllerTest extends TestCase
 
         $response
             ->assertRedirect('/');
+        $this->assertDatabaseHas('entries', [
+            'power_phrase' => $power_phrase
+        ]);
     }
     
     /**
@@ -113,7 +138,7 @@ class EntriesControllerTest extends TestCase
      */
     public function edit_投稿更新画面表示()
     {
-        $response = $this->get('/entries/1/edit');
+        $response = $this->actingAs($this->user)->get('/entries/' . self::ENTRY_ID . '/edit');
 
         $response
             ->assertStatus(200)
@@ -121,7 +146,7 @@ class EntriesControllerTest extends TestCase
             ->assertSee('どこで知りましたか？')
             ->assertSee('エピソード')
             ->assertSee('更新')
-            ->assertSee('戻る');
+            ->assertSee('トップページへ戻る');
     }
 
     /**
@@ -129,11 +154,11 @@ class EntriesControllerTest extends TestCase
      */
     public function update_投稿更新処理()
     {
-        $user = factory(User::class)->create();
-        $response = $this->actingAs($user)->patch(
-            '/entries/1',
+        $power_phrase = '投稿更新処理テスト';
+        $response = $this->actingAs($this->user)->patch(
+            '/entries/' . self::ENTRY_ID,
             [
-                'power_phrase' => 'テストフレーズ',
+                'power_phrase' => $power_phrase,
                 'source' => '友人',
                 'episode' => 'テスト'
             ]
@@ -141,6 +166,9 @@ class EntriesControllerTest extends TestCase
 
         $response
             ->assertRedirect('/');
+        $this->assertDatabaseHas('entries', [
+            'power_phrase' => $power_phrase
+        ]);
     }
 
     /**
@@ -148,10 +176,12 @@ class EntriesControllerTest extends TestCase
      */
     public function destroy_投稿削除処理()
     {
-        $user = factory(User::class)->create();
-        $response = $this->actingAs($user)->delete('/entries/1');
+        $response = $this->actingAs($this->user)->delete('/entries/' . self::ENTRY_ID);
 
         $response
             ->assertRedirect('/');
+        $this->assertSoftDeleted('entries', [
+            'id' => self::ENTRY_ID,
+        ]);
     }
 }
