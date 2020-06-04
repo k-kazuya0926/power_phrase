@@ -24,9 +24,9 @@ https://www.power-phrase.com/
     - Route53
     - ALB
     - ACM
-- Docker Desktop for Mac 2.2.0.3(nginx+PHP-FPM+MySQLの開発環境構築)
-    - Docker 19.03.5
-    - Docker Compose 1.25.4
+- Docker Desktop for Mac 2.3.0.3(nginx+PHP-FPM+MySQLの開発環境構築)
+    - Docker 19.03.8
+    - Docker Compose 1.25.5
 - Deployer 6.7.1
 - PHPUnit 7.5.20
 - X-debug
